@@ -1,0 +1,83 @@
+# A worked example: an 18 t rigid lorry doing city-centre deliveries.
+#
+# It inherits the bundled `truck` base and overrides only what a rigid changes
+# from an artic: it is shorter and lighter, it is allowed down destination-only
+# streets because that is where the bays are, it pays a congestion charge, and
+# it is banned from the low-emission zone core.
+version: 1
+name: urban-freight
+extends: truck
+mode: truck
+description: 18 t rigid on city-centre delivery work, LEZ-restricted.
+
+vehicle:
+  height: 3.9 m
+  width: 2.5 m
+  length: 10.0 m
+  weight: 18 t
+  axle_load: 10 t
+  axle_count: 3
+
+speeds:
+  default: 20 km/h
+  max_legal: 80 km/h
+  global_factor: 0.95
+  highway:
+    motorway: 80 km/h
+    trunk: 70 km/h
+    primary: 45 km/h
+    secondary: 38 km/h
+    tertiary: 32 km/h
+    residential: 18 km/h
+    service: 10 km/h
+    # A rigid can use tracks an artic cannot, but slowly.
+    track: 10 km/h
+
+access:
+  allow_through_destination: true
+
+turn:
+  base_penalty: 10 s
+  u_turn_penalty: 75 s
+  traffic_signal_penalty: 10 s
+  angle_penalty: 6 s
+
+zones:
+  - id: lez-core
+    tag: low_emission_zone
+    value: "yes"
+    action: block
+    description: Pre-Euro-VI rigids are refused entry to the LEZ core.
+  - id: congestion-charge
+    tag: congestion_charge
+    action: penalty
+    penalty: 300 s
+    description: Daily charge modelled as a time-equivalent cost per entry.
+  - id: quiet-streets
+    tag: maxweight_signed
+    action: penalty
+    penalty: 180 s
+    description: Streets with advisory weight signage; legal but discouraged.
+
+time_factors:
+  - name: am-peak
+    hours: "07:00-09:59"
+    days: [mo, tu, we, th, fr]
+    factor: 0.65
+    highway: [primary, secondary, tertiary, residential]
+  - name: night-ban
+    hours: "22:00-05:59"
+    factor: 0.5
+    highway: [residential, living_street]
+
+extras:
+  ferry:
+    allowed: false
+    speed: 12 km/h
+  toll:
+    avoid: false
+    penalty: 180 s
+
+metadata:
+  owner: city-logistics
+  fleet: rigid-18t

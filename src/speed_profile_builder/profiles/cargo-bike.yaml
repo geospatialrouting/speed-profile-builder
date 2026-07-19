@@ -1,0 +1,104 @@
+# Bundled base profile: an electrically assisted cargo bike.
+#
+# A long-tail or box bike is not a fast bicycle. It is wide enough to be blocked
+# by chicanes and bollard gaps, it cannot be lifted over steps, and it loses far
+# more speed on a climb than a commuter bike — all of which a stock bicycle
+# profile gets wrong in ways that route couriers into impassable streets.
+version: 1
+name: cargo-bike
+mode: bicycle
+description: Electrically assisted cargo bike, 1.0 m wide, cannot be carried.
+
+speeds:
+  default: 14 km/h
+  max_legal: 25 km/h
+  highway:
+    cycleway: 20 km/h
+    path: 14 km/h
+    footway: 6 km/h
+    pedestrian: 6 km/h
+    living_street: 12 km/h
+    residential: 17 km/h
+    unclassified: 18 km/h
+    tertiary: 19 km/h
+    tertiary_link: 14 km/h
+    secondary: 18 km/h
+    secondary_link: 13 km/h
+    primary: 17 km/h
+    primary_link: 12 km/h
+    service: 12 km/h
+    track: 9 km/h
+    bridleway: 8 km/h
+
+surfaces:
+  asphalt: 1.0
+  concrete: 1.0
+  paved: 1.0
+  paving_stones: 0.85
+  cobblestone: 0.45
+  sett: 0.5
+  compacted: 0.8
+  gravel: 0.55
+  fine_gravel: 0.7
+  unpaved: 0.5
+  ground: 0.4
+  dirt: 0.35
+  sand: 0.2
+  mud: 0.2
+  grass: 0.3
+
+tracktypes:
+  grade1: 1.0
+  grade2: 0.75
+  grade3: 0.5
+  grade4: 0.35
+  grade5: 0.25
+
+smoothness:
+  excellent: 1.0
+  good: 1.0
+  intermediate: 0.85
+  bad: 0.6
+  very_bad: 0.4
+  horrible: 0.25
+
+access:
+  hierarchy: [cargo_bike, bicycle, vehicle, access]
+  allowed: ["yes", designated, permissive, destination, delivery]
+  blocked: ["no", private, agricultural, forestry, military]
+  respect_oneway: true
+  allow_through_destination: true
+  barriers:
+    # A standard cargo bike is ~1.0 m wide; cycle barriers and kissing gates are
+    # built to stop exactly that, so they block rather than merely slow it.
+    cycle_barrier: block
+    kissing_gate: block
+    stile: block
+    bollard: {action: penalty, penalty: 8 s}
+    gate: {action: penalty, penalty: 20 s}
+    lift_gate: {action: penalty, penalty: 20 s}
+    block: block
+
+turn:
+  base_penalty: 4 s
+  u_turn_penalty: 8 s
+  traffic_signal_penalty: 12 s
+  stop_sign_penalty: 3 s
+  crossing_penalty: 6 s
+  angle_penalty: 1 s
+  allow_u_turns: true
+  restrictions: obey
+
+extras:
+  ferry:
+    allowed: true
+    speed: 10 km/h
+    penalty: 600 s
+  cargo_bike:
+    min_width: 1.0 m
+    walk_steps: false
+    gradient_penalty: 1.8
+    max_gradient: 8.0
+
+metadata:
+  maintainer: geospatialrouting.com

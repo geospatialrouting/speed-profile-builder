@@ -1,0 +1,107 @@
+{
+  "_generated": {
+    "tool": "speed-profile-builder",
+    "version": "golden",
+    "profile": "truck",
+    "mode": "truck",
+    "spec_chain": [
+      "truck.yaml"
+    ],
+    "fingerprint": "aeed21b5c465894d",
+    "warning": "generated file - edit the spec and re-run 'speed-profile build'",
+    "header": [
+      "GENERATED FILE - DO NOT EDIT.",
+      "Produced by speed-profile-builder golden from a declarative spec.",
+      "profile:     truck (mode: truck)",
+      "spec chain:  truck.yaml",
+      "fingerprint: aeed21b5c465894d",
+      "summary:     40 t articulated HGV at EU maximum dimensions.",
+      "Edit the spec and re-run:  speed-profile build <spec>"
+    ]
+  },
+  "costing": "truck",
+  "costing_options": {
+    "truck": {
+      "axle_count": 5,
+      "axle_load": 11.5,
+      "bollard_cost": 0,
+      "bollard_penalty": 43200,
+      "destination_only_penalty": 600,
+      "ferry_cost": 900,
+      "gate_cost": 0,
+      "gate_penalty": 43200,
+      "hazmat": false,
+      "height": 4,
+      "ignore_restrictions": false,
+      "length": 16.5,
+      "maneuver_penalty": 12,
+      "shortest": false,
+      "stop_sign_penalty": 6,
+      "toll_booth_cost": 120,
+      "top_speed": 90,
+      "traffic_signal_penalty": 6,
+      "use_ferry": 0.2,
+      "use_highways": 1,
+      "use_living_streets": 0.32,
+      "use_tolls": 0.4167,
+      "use_tracks": 0.048,
+      "weight": 40,
+      "width": 2.55
+    }
+  },
+  "_speed_profile": {
+    "note": "non-standard block; Valhalla ignores unknown keys. Consumed by graph-build or traffic-injection steps that can express what costing options cannot.",
+    "speeds_kmh": {
+      "living_street": 8.0,
+      "motorway": 85.0,
+      "motorway_link": 45.0,
+      "primary": 65.0,
+      "primary_link": 35.0,
+      "residential": 22.0,
+      "road": 25.0,
+      "secondary": 55.0,
+      "secondary_link": 30.0,
+      "service": 12.0,
+      "tertiary": 45.0,
+      "tertiary_link": 28.0,
+      "track": 8.0,
+      "trunk": 75.0,
+      "trunk_link": 40.0,
+      "unclassified": 35.0
+    },
+    "default_speed_kmh": 25,
+    "global_factor": 1,
+    "surface_factors": {
+      "asphalt": 1,
+      "cobblestone": 0.45,
+      "compacted": 0.7,
+      "concrete": 1,
+      "dirt": 0.25,
+      "fine_gravel": 0.55,
+      "grass": 0.25,
+      "gravel": 0.45,
+      "ground": 0.3,
+      "mud": 0.2,
+      "paved": 1,
+      "paving_stones": 0.85,
+      "sand": 0.2,
+      "sett": 0.5,
+      "unpaved": 0.45
+    },
+    "tracktype_factors": {
+      "grade1": 0.9,
+      "grade2": 0.6,
+      "grade3": 0.4,
+      "grade4": 0.25,
+      "grade5": 0.15
+    },
+    "smoothness_factors": {
+      "bad": 0.5,
+      "excellent": 1,
+      "good": 1,
+      "horrible": 0.2,
+      "intermediate": 0.85,
+      "very_bad": 0.3
+    }
+  }
+}

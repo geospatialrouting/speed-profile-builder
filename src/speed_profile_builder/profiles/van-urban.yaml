@@ -1,0 +1,71 @@
+# Bundled base profile: a 3.5 t urban delivery van.
+#
+# Inherits the car speed table and overrides only what a van changes: it is
+# taller and heavier, it is slower away from the trunk network, and it is
+# allowed down `access=destination` streets because that is where the drops are.
+version: 1
+name: van-urban
+extends: car
+mode: van
+description: 3.5 t urban delivery van with destination access and kerbside dwell.
+
+vehicle:
+  height: 2.9 m
+  width: 2.1 m
+  length: 6.0 m
+  weight: 3.5 t
+  axle_count: 2
+
+speeds:
+  default: 24 km/h
+  max_legal: 110 km/h
+  global_factor: 0.92
+  highway:
+    motorway: 100 km/h
+    trunk: 85 km/h
+    primary: 55 km/h
+    secondary: 45 km/h
+    tertiary: 38 km/h
+    unclassified: 30 km/h
+    residential: 22 km/h
+    living_street: 8 km/h
+    service: 12 km/h
+    track: 8 km/h
+
+access:
+  hierarchy: [goods, motor_vehicle, vehicle, access]
+  allow_through_destination: true
+
+turn:
+  base_penalty: 9 s
+  u_turn_penalty: 45 s
+  traffic_signal_penalty: 8 s
+  stop_sign_penalty: 4 s
+  angle_penalty: 5 s
+
+time_factors:
+  - name: am-peak
+    hours: "07:00-09:59"
+    days: [mo, tu, we, th, fr]
+    factor: 0.7
+    highway: [primary, secondary, tertiary, residential, unclassified]
+  - name: pm-peak
+    hours: "16:00-18:59"
+    days: [mo, tu, we, th, fr]
+    factor: 0.72
+    highway: [primary, secondary, tertiary, residential, unclassified]
+  - name: overnight
+    hours: "22:00-05:00"
+    factor: 1.15
+
+extras:
+  ferry:
+    allowed: true
+    speed: 12 km/h
+    penalty: 600 s
+  toll:
+    avoid: false
+    penalty: 60 s
+
+metadata:
+  maintainer: geospatialrouting.com

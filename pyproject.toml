@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "speed-profile-builder"
+version = "0.4.0"
+description = "Author OSRM Lua and Valhalla costing profiles from one declarative YAML spec."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "geospatialrouting.com" }]
+keywords = ["osrm", "valhalla", "routing", "openstreetmap", "speed-profiles", "codegen"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: GIS",
+]
+dependencies = [
+  "click>=8.1",
+  "pydantic>=2.6",
+  "pyyaml>=6.0",
+  "rich>=13.7",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  # Upper bound pinned deliberately: ruff adds rules to existing selectors in
+  # minor releases, which would break CI on an unrelated commit.
+  "ruff>=0.6,<0.16",
+]
+
+[project.urls]
+Homepage = "https://www.geospatialrouting.com"
+Source = "https://github.com/geospatialrouting/speed-profile-builder"
+
+[project.scripts]
+speed-profile = "speed_profile_builder.cli:run"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/speed_profile_builder"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "examples", "README.md", "LICENSE"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM", "RET", "ARG", "PTH", "RUF"]
+ignore = [
+  # The generated Lua and the scaffolded YAML are long strings by nature.
+  "E501",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["ARG001", "ARG002"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+  "lua: tests that require a Lua interpreter on PATH",
+]

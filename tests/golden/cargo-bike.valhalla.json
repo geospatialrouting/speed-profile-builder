@@ -1,0 +1,110 @@
+{
+  "_generated": {
+    "tool": "speed-profile-builder",
+    "version": "golden",
+    "profile": "cargo-bike",
+    "mode": "bicycle",
+    "spec_chain": [
+      "cargo-bike.yaml"
+    ],
+    "fingerprint": "35b3c2f259a2d5f5",
+    "warning": "generated file - edit the spec and re-run 'speed-profile build'",
+    "header": [
+      "GENERATED FILE - DO NOT EDIT.",
+      "Produced by speed-profile-builder golden from a declarative spec.",
+      "profile:     cargo-bike (mode: bicycle)",
+      "spec chain:  cargo-bike.yaml",
+      "fingerprint: 35b3c2f259a2d5f5",
+      "summary:     Electrically assisted cargo bike, 1.0 m wide, cannot be carried.",
+      "Edit the spec and re-run:  speed-profile build <spec>"
+    ]
+  },
+  "costing": "bicycle",
+  "costing_options": {
+    "bicycle": {
+      "avoid_bad_surfaces": 0.8,
+      "bicycle_type": "Cargo",
+      "bollard_cost": 8,
+      "bollard_penalty": 0,
+      "cycling_speed": 14,
+      "destination_only_penalty": 0,
+      "ferry_cost": 600,
+      "gate_cost": 20,
+      "gate_penalty": 0,
+      "ignore_restrictions": false,
+      "maneuver_penalty": 4,
+      "shortest": false,
+      "stop_sign_penalty": 3,
+      "top_speed": 25,
+      "traffic_signal_penalty": 12,
+      "use_ferry": 0.25,
+      "use_highways": 0.5,
+      "use_hills": 0.0556,
+      "use_living_streets": 0.8571,
+      "use_roads": 0.25,
+      "use_tolls": 0.5,
+      "use_tracks": 0.1607
+    }
+  },
+  "_speed_profile": {
+    "note": "non-standard block; Valhalla ignores unknown keys. Consumed by graph-build or traffic-injection steps that can express what costing options cannot.",
+    "speeds_kmh": {
+      "bridleway": 8.0,
+      "cycleway": 20.0,
+      "footway": 6.0,
+      "living_street": 12.0,
+      "path": 14.0,
+      "pedestrian": 6.0,
+      "primary": 17.0,
+      "primary_link": 12.0,
+      "residential": 17.0,
+      "secondary": 18.0,
+      "secondary_link": 13.0,
+      "service": 12.0,
+      "tertiary": 19.0,
+      "tertiary_link": 14.0,
+      "track": 9.0,
+      "unclassified": 18.0
+    },
+    "default_speed_kmh": 14,
+    "global_factor": 1,
+    "surface_factors": {
+      "asphalt": 1,
+      "cobblestone": 0.45,
+      "compacted": 0.8,
+      "concrete": 1,
+      "dirt": 0.35,
+      "fine_gravel": 0.7,
+      "grass": 0.3,
+      "gravel": 0.55,
+      "ground": 0.4,
+      "mud": 0.2,
+      "paved": 1,
+      "paving_stones": 0.85,
+      "sand": 0.2,
+      "sett": 0.5,
+      "unpaved": 0.5
+    },
+    "tracktype_factors": {
+      "grade1": 1,
+      "grade2": 0.75,
+      "grade3": 0.5,
+      "grade4": 0.35,
+      "grade5": 0.25
+    },
+    "smoothness_factors": {
+      "bad": 0.6,
+      "excellent": 1,
+      "good": 1,
+      "horrible": 0.25,
+      "intermediate": 0.85,
+      "very_bad": 0.4
+    },
+    "cargo_bike": {
+      "min_width_m": 1,
+      "walk_steps": false,
+      "gradient_penalty": 1.8,
+      "max_gradient": 8.0
+    }
+  }
+}

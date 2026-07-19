@@ -1,0 +1,55 @@
+# Default sample ways for `speed-profile simulate`.
+#
+# A deliberately awkward cross-section: the classes that dominate any road
+# network, plus the cases that break profiles — a low bridge, a weight limit, a
+# muddy track, a ferry, a toll motorway, a destination-only street and a
+# private drive. Each is one kilometre unless stated, so the reported duration
+# reads directly as seconds per kilometre.
+ways:
+  - name: motorway
+    tags: {highway: motorway, surface: asphalt, lanes: "3"}
+  - name: motorway (tolled)
+    tags: {highway: motorway, surface: asphalt, toll: "yes"}
+  - name: trunk
+    tags: {highway: trunk, surface: asphalt}
+  - name: primary
+    tags: {highway: primary, surface: asphalt, maxspeed: "50"}
+  - name: primary (mph limit)
+    tags: {highway: primary, surface: asphalt, maxspeed: "30 mph"}
+  - name: secondary (cobbles)
+    tags: {highway: secondary, surface: cobblestone}
+  - name: tertiary
+    tags: {highway: tertiary, surface: asphalt}
+  - name: residential
+    tags: {highway: residential, surface: asphalt, maxspeed: "30"}
+  - name: residential (destination only)
+    tags: {highway: residential, surface: asphalt, access: destination}
+  - name: living street
+    tags: {highway: living_street, surface: paving_stones}
+  - name: service road
+    tags: {highway: service, service: driveway, surface: asphalt}
+  - name: private drive
+    tags: {highway: service, access: private}
+  - name: unclassified (unpaved)
+    tags: {highway: unclassified, surface: unpaved, smoothness: bad}
+  - name: track grade4
+    tags: {highway: track, surface: dirt, tracktype: grade4}
+  - name: low bridge 3.2 m
+    tags: {highway: primary, surface: asphalt, maxheight: "3.2"}
+  - name: weight limit 7.5 t
+    tags: {highway: secondary, surface: asphalt, maxweight: "7.5"}
+  - name: narrow lane 2.0 m
+    tags: {highway: unclassified, surface: asphalt, maxwidth: "2.0"}
+  - name: hgv prohibited
+    tags: {highway: primary, surface: asphalt, hgv: "no"}
+  - name: cycleway
+    tags: {highway: cycleway, surface: asphalt}
+  - name: footway
+    tags: {highway: footway, surface: paving_stones}
+  - name: low emission zone street
+    tags: {highway: primary, surface: asphalt, low_emission_zone: "yes"}
+  - name: congestion charge street
+    tags: {highway: secondary, surface: asphalt, congestion_charge: "yes"}
+  - name: ferry crossing
+    length_m: 6000
+    tags: {route: ferry, motor_vehicle: "yes"}

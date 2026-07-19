@@ -1,0 +1,161 @@
+{
+  "_generated": {
+    "tool": "speed-profile-builder",
+    "version": "golden",
+    "profile": "van-urban",
+    "mode": "van",
+    "spec_chain": [
+      "car.yaml",
+      "van-urban.yaml"
+    ],
+    "fingerprint": "f8034c7e0f5b578e",
+    "warning": "generated file - edit the spec and re-run 'speed-profile build'",
+    "header": [
+      "GENERATED FILE - DO NOT EDIT.",
+      "Produced by speed-profile-builder golden from a declarative spec.",
+      "profile:     van-urban (mode: van)",
+      "spec chain:  van-urban.yaml <- car.yaml",
+      "fingerprint: f8034c7e0f5b578e",
+      "summary:     3.5 t urban delivery van with destination access and kerbside dwell.",
+      "Edit the spec and re-run:  speed-profile build <spec>"
+    ]
+  },
+  "costing": "auto",
+  "costing_options": {
+    "auto": {
+      "bollard_cost": 0,
+      "bollard_penalty": 43200,
+      "destination_only_penalty": 0,
+      "ferry_cost": 600,
+      "gate_cost": 0,
+      "gate_penalty": 43200,
+      "height": 2.9,
+      "ignore_restrictions": false,
+      "maneuver_penalty": 9,
+      "shortest": false,
+      "stop_sign_penalty": 4,
+      "toll_booth_cost": 60,
+      "top_speed": 110,
+      "traffic_signal_penalty": 8,
+      "use_ferry": 0.25,
+      "use_highways": 1,
+      "use_living_streets": 0.3333,
+      "use_tolls": 0.4545,
+      "use_tracks": 0.1,
+      "width": 2.1
+    }
+  },
+  "_speed_profile": {
+    "note": "non-standard block; Valhalla ignores unknown keys. Consumed by graph-build or traffic-injection steps that can express what costing options cannot.",
+    "speeds_kmh": {
+      "living_street": 8.0,
+      "motorway": 100.0,
+      "motorway_link": 60.0,
+      "primary": 55.0,
+      "primary_link": 50.0,
+      "residential": 22.0,
+      "road": 30.0,
+      "secondary": 45.0,
+      "secondary_link": 45.0,
+      "service": 12.0,
+      "tertiary": 38.0,
+      "tertiary_link": 40.0,
+      "track": 8.0,
+      "trunk": 85.0,
+      "trunk_link": 55.0,
+      "unclassified": 30.0
+    },
+    "default_speed_kmh": 24,
+    "global_factor": 0.92,
+    "surface_factors": {
+      "asphalt": 1,
+      "cobblestone": 0.55,
+      "compacted": 0.8,
+      "concrete": 1,
+      "dirt": 0.45,
+      "fine_gravel": 0.7,
+      "grass": 0.4,
+      "gravel": 0.6,
+      "ground": 0.5,
+      "mud": 0.3,
+      "paved": 1,
+      "paving_stones": 0.9,
+      "sand": 0.35,
+      "sett": 0.6,
+      "unpaved": 0.6
+    },
+    "tracktype_factors": {
+      "grade1": 1,
+      "grade2": 0.8,
+      "grade3": 0.6,
+      "grade4": 0.45,
+      "grade5": 0.3
+    },
+    "smoothness_factors": {
+      "bad": 0.65,
+      "excellent": 1,
+      "good": 1,
+      "horrible": 0.3,
+      "intermediate": 0.9,
+      "very_bad": 0.45
+    },
+    "time_factors": [
+      {
+        "name": "am-peak",
+        "factor": 0.7,
+        "start_min": 420,
+        "end_min": 599,
+        "days": [
+          "mo",
+          "tu",
+          "we",
+          "th",
+          "fr"
+        ],
+        "highway": [
+          "primary",
+          "secondary",
+          "tertiary",
+          "residential",
+          "unclassified"
+        ]
+      },
+      {
+        "name": "overnight",
+        "factor": 1.15,
+        "start_min": 1320,
+        "end_min": 300,
+        "days": [
+          "mo",
+          "tu",
+          "we",
+          "th",
+          "fr",
+          "sa",
+          "su"
+        ],
+        "highway": []
+      },
+      {
+        "name": "pm-peak",
+        "factor": 0.72,
+        "start_min": 960,
+        "end_min": 1139,
+        "days": [
+          "mo",
+          "tu",
+          "we",
+          "th",
+          "fr"
+        ],
+        "highway": [
+          "primary",
+          "secondary",
+          "tertiary",
+          "residential",
+          "unclassified"
+        ]
+      }
+    ]
+  }
+}

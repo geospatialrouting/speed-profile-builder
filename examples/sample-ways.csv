@@ -1,0 +1,10 @@
+name,highway,surface,maxspeed,maxweight,maxheight,access,low_emission_zone,congestion_charge,toll,length_m
+A40 dual carriageway,trunk,asphalt,70 mph,,,,,,,2400
+Euston Road,primary,asphalt,30 mph,,,,yes,yes,,1100
+Bloomsbury side street,residential,asphalt,20 mph,,,,yes,yes,,300
+Delivery bay approach,service,asphalt,,,,destination,yes,yes,,80
+Riverside weight limit,secondary,asphalt,30 mph,7.5,,,,,,600
+Railway underbridge,tertiary,asphalt,30 mph,,3.6,,,,,120
+Industrial estate loop,unclassified,concrete,,,,,,,,900
+Farm access track,track,dirt,,,,,,,,1500
+M6 Toll,motorway,asphalt,70 mph,,,,,,yes,4000

@@ -1,0 +1,110 @@
+# Bundled base profile: a 40 t articulated HGV.
+#
+# Dimensions are the EU maximums for a standard tractor-and-semitrailer
+# combination, so the generated access checks reject ways whose maxheight,
+# maxweight or maxaxleload cannot take one.
+version: 1
+name: truck
+mode: truck
+description: 40 t articulated HGV at EU maximum dimensions.
+
+vehicle:
+  height: 4.0 m
+  width: 2.55 m
+  length: 16.5 m
+  weight: 40 t
+  axle_load: 11.5 t
+  axle_count: 5
+  hazmat: false
+  trailer: true
+
+speeds:
+  default: 25 km/h
+  max_legal: 90 km/h
+  highway:
+    motorway: 85 km/h
+    motorway_link: 45 km/h
+    trunk: 75 km/h
+    trunk_link: 40 km/h
+    primary: 65 km/h
+    primary_link: 35 km/h
+    secondary: 55 km/h
+    secondary_link: 30 km/h
+    tertiary: 45 km/h
+    tertiary_link: 28 km/h
+    unclassified: 35 km/h
+    residential: 22 km/h
+    living_street: 8 km/h
+    service: 12 km/h
+    road: 25 km/h
+    track: 8 km/h
+
+surfaces:
+  asphalt: 1.0
+  concrete: 1.0
+  paved: 1.0
+  paving_stones: 0.85
+  cobblestone: 0.45
+  sett: 0.5
+  compacted: 0.7
+  gravel: 0.45
+  fine_gravel: 0.55
+  unpaved: 0.45
+  ground: 0.3
+  dirt: 0.25
+  sand: 0.2
+  mud: 0.2
+  grass: 0.25
+
+tracktypes:
+  grade1: 0.9
+  grade2: 0.6
+  grade3: 0.4
+  grade4: 0.25
+  grade5: 0.15
+
+smoothness:
+  excellent: 1.0
+  good: 1.0
+  intermediate: 0.85
+  bad: 0.5
+  very_bad: 0.3
+  horrible: 0.2
+
+access:
+  hierarchy: [hgv, goods, motor_vehicle, vehicle, access]
+  allowed: ["yes", designated, permissive, destination, delivery]
+  blocked: ["no", private, agricultural, forestry, military]
+  respect_oneway: true
+  allow_through_destination: false
+  barriers:
+    gate: block
+    bollard: block
+    lift_gate: {action: penalty, penalty: 25 s}
+    height_restrictor: block
+    cycle_barrier: block
+    block: block
+    "yes": block
+    toll_booth: {action: penalty, penalty: 45 s}
+
+turn:
+  base_penalty: 12 s
+  u_turn_penalty: 90 s
+  traffic_signal_penalty: 6 s
+  stop_sign_penalty: 6 s
+  angle_penalty: 8 s
+  allow_u_turns: true
+  restrictions: obey
+
+extras:
+  ferry:
+    allowed: true
+    speed: 12 km/h
+    penalty: 900 s
+  toll:
+    avoid: false
+    penalty: 120 s
+
+metadata:
+  maintainer: geospatialrouting.com
+  regulatory_basis: EU Directive 96/53/EC maximum dimensions

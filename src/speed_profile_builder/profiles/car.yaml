@@ -1,0 +1,100 @@
+# Bundled base profile: a conventional passenger car.
+#
+# Speeds are free-flow estimates in the spirit of OSRM's stock car profile, not
+# posted limits — the generated code still clamps to `maxspeed` where it is
+# tagged. Use this as the `extends:` base for anything car-shaped.
+version: 1
+name: car
+mode: car
+description: General-purpose passenger car, free-flow speeds, no dimension limits.
+
+speeds:
+  default: 30 km/h
+  max_legal: 140 km/h
+  highway:
+    motorway: 110 km/h
+    motorway_link: 60 km/h
+    trunk: 95 km/h
+    trunk_link: 55 km/h
+    primary: 80 km/h
+    primary_link: 50 km/h
+    secondary: 70 km/h
+    secondary_link: 45 km/h
+    tertiary: 60 km/h
+    tertiary_link: 40 km/h
+    unclassified: 45 km/h
+    residential: 30 km/h
+    living_street: 10 km/h
+    service: 20 km/h
+    road: 30 km/h
+    track: 15 km/h
+
+surfaces:
+  asphalt: 1.0
+  concrete: 1.0
+  paved: 1.0
+  paving_stones: 0.9
+  cobblestone: 0.55
+  sett: 0.6
+  compacted: 0.8
+  gravel: 0.6
+  fine_gravel: 0.7
+  unpaved: 0.6
+  ground: 0.5
+  dirt: 0.45
+  sand: 0.35
+  mud: 0.3
+  grass: 0.4
+
+tracktypes:
+  grade1: 1.0
+  grade2: 0.8
+  grade3: 0.6
+  grade4: 0.45
+  grade5: 0.3
+
+smoothness:
+  excellent: 1.0
+  good: 1.0
+  intermediate: 0.9
+  bad: 0.65
+  very_bad: 0.45
+  horrible: 0.3
+
+access:
+  hierarchy: [motorcar, motor_vehicle, vehicle, access]
+  allowed: [yes, designated, permissive, destination, delivery]
+  blocked: [no, private, agricultural, forestry, military]
+  respect_oneway: true
+  allow_through_destination: false
+  barriers:
+    gate: block
+    bollard: block
+    lift_gate: {action: penalty, penalty: 15 s}
+    cycle_barrier: block
+    block: block
+    kissing_gate: block
+    stile: block
+    yes: block
+    toll_booth: {action: penalty, penalty: 20 s}
+
+turn:
+  base_penalty: 7.5 s
+  u_turn_penalty: 20 s
+  traffic_signal_penalty: 2 s
+  stop_sign_penalty: 2 s
+  angle_penalty: 3 s
+  allow_u_turns: true
+  restrictions: obey
+
+extras:
+  ferry:
+    allowed: true
+    speed: 12 km/h
+    penalty: 300 s
+  toll:
+    avoid: false
+    penalty: 0 s
+
+metadata:
+  maintainer: geospatialrouting.com

@@ -1,0 +1,58 @@
+# Bundled base profile: a battery-electric urban delivery van.
+#
+# Extends van-urban. The differences that matter for routing are not the drive
+# train but the operating envelope: electric fleets are the ones that get free
+# passage through low-emission zones, they are geared for lower top speeds, and
+# their range makes long motorway legs expensive rather than cheap.
+version: 1
+name: ev-delivery
+extends: van-urban
+mode: van
+description: Battery-electric 3.5 t delivery van, LEZ-exempt, range-limited.
+
+vehicle:
+  weight: 4.25 t   # electric vans get a derogation above the 3.5 t class limit
+
+speeds:
+  default: 22 km/h
+  max_legal: 100 km/h
+  global_factor: 0.9
+  highway:
+    motorway: 90 km/h
+    trunk: 78 km/h
+
+turn:
+  # Regenerative braking makes stop-start cheaper in energy terms than for a
+  # diesel van, but no faster; only the dwell penalties change.
+  stop_sign_penalty: 3 s
+  traffic_signal_penalty: 6 s
+
+zones:
+  - id: lez-exempt
+    tag: low_emission_zone
+    action: penalty
+    penalty: 1 s
+    description: Zero-emission vehicles pass LEZ boundaries freely; kept as a
+      near-zero marker so the zone still shows up in diffs and simulations.
+  - id: congestion-charge
+    tag: congestion_charge
+    action: penalty
+    penalty: 240 s
+    description: Congestion charging still applies to electric vans in most
+      schemes; modelled as a time-equivalent cost.
+
+extras:
+  charging:
+    range: 180 km
+    reserve_fraction: 0.25
+    recharge_penalty: 2700 s
+  ferry:
+    allowed: false
+    speed: 12 km/h
+  toll:
+    avoid: false
+    penalty: 60 s
+
+metadata:
+  maintainer: geospatialrouting.com
+  powertrain: battery-electric
